@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -39,5 +40,20 @@ public class BD {
         newValues.put("pswrd", user.getPswrd());
         newValues.put("name", user.getName());
         bd.insert("users", null, newValues);
+    }
+
+    //метод проверки существования юзера в системе по логину и паролю
+    public static boolean isUserExist(String login, String pswrd, Context context){
+        String sql = "SELECT * FROM users";
+        Cursor cursor = getDataFromBD(sql, context);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            if (cursor.getString(1).equals(login) && cursor.getString(2).equals(pswrd)){
+                return true;
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return false;
     }
 }
