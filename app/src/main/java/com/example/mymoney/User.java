@@ -5,6 +5,7 @@ public class User {
     private String pswrd;
     private String name;
 
+
     public User(String login, String pswrd, String name) {
         this.login = login;
         this.pswrd = pswrd;

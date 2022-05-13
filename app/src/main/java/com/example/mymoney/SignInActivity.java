@@ -32,7 +32,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!login.getText().toString().equals("")){
                     if (BD.isUserExist(login.getText().toString(),pswrd.getText().toString(),context)){
-                        Log.d("money777", "юзер есть");
+                        Log.d("money777", "вход выполнен");
                         startActivity(new Intent(SignInActivity.this, MainActivity.class));
                     }else {
                         Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_LONG).show();
