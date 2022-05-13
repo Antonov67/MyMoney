@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BD {
 
@@ -76,7 +78,9 @@ public class BD {
         return isUniq;
     }
 
-    public static void allMoney(Context context) {
+    public static ArrayList<String> allExpence(Context context) {
+
+        List<String> list = new ArrayList<>();
 
         String sql = "SELECT users.login, expence.summa, category_expence.name FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID;
         Log.d("money777", "траты");
@@ -85,10 +89,11 @@ public class BD {
 
         while (!cursor.isAfterLast()) {
             Log.d("money777", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
+            list.add(cursor.getString(1) + " руб. категория: " + cursor.getString(2));
             cursor.moveToNext();
         }
         cursor.close();
-
+        return (ArrayList<String>) list;
     }
 
     //общие расходы
