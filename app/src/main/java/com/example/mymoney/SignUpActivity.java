@@ -6,9 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private EditText loginRegField, pswrdRegField, nameField;
+    Button buttonReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,18 +21,21 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
 
+        buttonReg = findViewById(R.id.buttonReg);
+        loginRegField = findViewById(R.id.loginRegField);
+        pswrdRegField = findViewById(R.id.pswrdRegField);
+        nameField = findViewById(R.id.nameField);
+
+
         Context context = this;
-        regButton.setOnClickListener(new View.OnClickListener() {
+        buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = new User(login.getText().toString(),pswrd1.getText().toString());
-                user.setFio(fio.getText().toString());
-                user.setAdress(adress.getText().toString());
-                if (!login.getText().toString().equals("")
-                        && !fio.getText().toString().equals("")
-                        && pswrd1.getText().toString().equals(pswrd2.getText().toString())){
-                    if (user.isUserUniq(context)){
-                        DB.addUser(user,context);
+                User user = new User(loginRegField.getText().toString(),pswrdRegField.getText().toString(), nameField.getText().toString());
+                if (!loginRegField.getText().toString().equals("")
+                        && !pswrdRegField.getText().toString().equals("")){
+                    if (BD.isUserUniq(loginRegField.getText().toString(),context)){
+                        BD.addUser(user,context);
                         Toast.makeText(getApplicationContext(),"Пользователь успешно добавлен",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
                     }else{

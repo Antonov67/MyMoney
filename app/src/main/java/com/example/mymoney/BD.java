@@ -42,7 +42,7 @@ public class BD {
         bd.insert("users", null, newValues);
     }
 
-    //метод проверки существования юзера в системе по логину и паролю
+    //метод проверки существования юзера в системе по логину
     public static boolean isUserExist(String login, String pswrd, Context context){
         String sql = "SELECT * FROM users";
         Cursor cursor = getDataFromBD(sql, context);
@@ -55,5 +55,20 @@ public class BD {
         }
         cursor.close();
         return false;
+    }
+
+    public static boolean isUserUniq(String login, Context context){
+        boolean isUniq = true;
+        String sql = "SELECT * FROM users";
+        Cursor cursor = getDataFromBD(sql, context);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            if (cursor.getString(1).equals(login)){
+                isUniq = false;
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return isUniq;
     }
 }
