@@ -82,14 +82,16 @@ public class BD {
 
         List<String> list = new ArrayList<>();
 
-        String sql = "SELECT users.login, expence.summa, category_expence.name, expence.data FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID;
-        Log.d("money777", "траты");
+       // String sql = "SELECT users.login, expence.summa, category_expence.name, expence.data FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " ORDER BY expence.data DESC";
+       // Log.d("money777", "траты");
+        String sql = "SELECT users.login, SUM(expence.summa), category_expence.name FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " GROUP BY category_expence.name";
         Cursor cursor = getDataFromBD(sql, context);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            Log.d("money777", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
-            list.add(cursor.getString(3) + ": " + cursor.getString(1) + " руб. категория: " + cursor.getString(2));
+           // Log.d("money777", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
+           // list.add(cursor.getString(3) + ": " + cursor.getString(1) + " руб. категория: " + cursor.getString(2));
+            list.add(cursor.getString(2) + ": " + cursor.getString(1));
             cursor.moveToNext();
         }
         cursor.close();
@@ -143,6 +145,26 @@ public class BD {
         }
         cursor.close();
         return (ArrayList<CategoryExpence>) list;
+    }
+
+    //INSERT запрос для таблицы expence
+    public static void addExpence(Expence expence, Context context){
+        DataBaseHelper databaseHelper;
+        SQLiteDatabase bd;
+        databaseHelper = new DataBaseHelper(context);
+        try {
+            databaseHelper.updateDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bd = databaseHelper.getReadableDatabase();
+        ContentValues newValues = new ContentValues();
+        newValues.put("id", expence.getId());
+        newValues.put("summa", expence.getSumma());
+        newValues.put("data", expence.getDate());
+        newValues.put("item", expence.getItem());
+        newValues.put("id_cat", expence.getId_cat());
+        bd.insert("expence", null, newValues);
     }
 
 }

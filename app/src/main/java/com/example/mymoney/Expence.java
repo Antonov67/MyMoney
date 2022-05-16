@@ -14,4 +14,34 @@ public class Expence {
         this.item = item;
         this.id_cat = id_cat;
     }
+
+    @Override
+    public String toString() {
+        return "Будет добавлено: " +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", summa=" + summa +
+                ", item='" + item + '\'' +
+                ", id_cat=" + id_cat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public double getSumma() {
+        return summa;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public int getId_cat() {
+        return id_cat;
+    }
 }

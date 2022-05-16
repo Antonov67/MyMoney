@@ -8,10 +8,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,7 +23,9 @@ import java.util.List;
 public class VvodExpenceActivity extends AppCompatActivity {
 
     ListView listView;
-    EditText dateExpence, summaField, ItemField;
+    TextView textResult;
+    EditText dateExpence, summaField, itemField;
+    int cat_id = -1;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -29,16 +34,15 @@ public class VvodExpenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vvod_expence);
 
         listView = findViewById(R.id.listVvodExpence);
+        textResult = findViewById(R.id.textPreviewVvod);
         dateExpence = findViewById(R.id.dateExpence);
         summaField = findViewById(R.id.summaField);
-        ItemField = findViewById(R.id.itemExpenceField);
+        itemField = findViewById(R.id.itemExpenceField);
 
         //список название категорий из общего списка категорий
         List<String> list = new ArrayList<>();
-        BD.allCatExpence(this);
 
-        List<CategoryExpence> listTotal = new ArrayList<>();
-        listTotal = BD.allCatExpence(this);
+        List<CategoryExpence> listTotal = BD.allCatExpence(this);
 
         for (CategoryExpence categoryExpence : listTotal){
             list.add(categoryExpence.getName());
@@ -47,6 +51,13 @@ public class VvodExpenceActivity extends AppCompatActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                cat_id = listTotal.get(i).getId();
+            }
+        });
 
 
         dateExpence.setOnClickListener(new View.OnClickListener() {
@@ -76,5 +87,22 @@ public class VvodExpenceActivity extends AppCompatActivity {
     }
 
 
+    public void vvodExpenceTotal(View view) {
+        //если поля не пустые, то создадим объект "расходы" и добавим его в БД
+        if (!summaField.getText().toString().equals("")
+                && !itemField.getText().toString().equals("")
+                && !dateExpence.getText().toString().equals("")
+                && cat_id != -1)
+        {
+            Expence expence = new Expence(
+                    BD.USER_ID,dateExpence.getText().toString(),
+                    Double.parseDouble(summaField.getText().toString()),
+                    itemField.getText().toString(),cat_id);
+            textResult.setText(expence.toString());
+            BD.addExpence(expence, this);
+        }else {
+            Toast.makeText(getApplicationContext(),"Заполните все поля",Toast.LENGTH_SHORT).show();
+        }
 
+    }
 }
