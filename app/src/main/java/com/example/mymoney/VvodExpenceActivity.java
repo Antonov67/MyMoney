@@ -39,7 +39,7 @@ public class VvodExpenceActivity extends AppCompatActivity {
         summaField = findViewById(R.id.summaField);
         itemField = findViewById(R.id.itemExpenceField);
 
-        //список название категорий из общего списка категорий
+        //список названий категорий из общего списка категорий
         List<String> list = new ArrayList<>();
 
         List<CategoryExpence> listTotal = BD.allCatExpence(this);

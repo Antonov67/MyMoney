@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        BD.allExpence(this);
+
         Log.d("money777", "общие траты");
         Log.d("money777", minus + "");
         Log.d("money777", "общие доходы");

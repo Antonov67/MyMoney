@@ -1,6 +1,8 @@
 package com.example.mymoney;
 
-public class CategoryExpence {
+import java.io.Serializable;
+
+public class CategoryExpence implements Serializable {
     private int id;
     private String name;
 

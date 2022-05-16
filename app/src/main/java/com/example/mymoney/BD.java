@@ -78,24 +78,42 @@ public class BD {
         return isUniq;
     }
 
-    public static ArrayList<String> allExpence(Context context) {
+    //запрос расходов определенной категории
+    public static ArrayList<String> allExpenceIzCategory(Context context, int id) {
 
         List<String> list = new ArrayList<>();
 
-       // String sql = "SELECT users.login, expence.summa, category_expence.name, expence.data FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " ORDER BY expence.data DESC";
+        String sql = "SELECT users.login, expence.summa, expence.item, expence.data FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " AND expence.id_cat = " + id  + " ORDER BY expence.data DESC";
        // Log.d("money777", "траты");
-        String sql = "SELECT users.login, SUM(expence.summa), category_expence.name FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " GROUP BY category_expence.name";
+
         Cursor cursor = getDataFromBD(sql, context);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
            // Log.d("money777", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
-           // list.add(cursor.getString(3) + ": " + cursor.getString(1) + " руб. категория: " + cursor.getString(2));
-            list.add(cursor.getString(2) + ": " + cursor.getString(1));
+            list.add(cursor.getString(3) + ": " + cursor.getString(2) + ", " + cursor.getString(1) + " руб.");
             cursor.moveToNext();
         }
         cursor.close();
         return (ArrayList<String>) list;
+    }
+
+    public static ArrayList<ExpenceByCategory> allExpenceGroupByCategory(Context context) {
+
+        List<ExpenceByCategory> list = new ArrayList<>();
+
+       // Log.d("money777", "траты");
+        String sql = "SELECT users.login, SUM(expence.summa), expence.id_cat, category_expence.name FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID + " GROUP BY category_expence.name";
+        Cursor cursor = getDataFromBD(sql, context);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            ExpenceByCategory expenceByCategory = new ExpenceByCategory(Integer.parseInt(cursor.getString(2)),cursor.getString(3),Double.parseDouble(cursor.getString(1)));
+            list.add(expenceByCategory);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return (ArrayList<ExpenceByCategory>) list;
     }
 
     //общие расходы
