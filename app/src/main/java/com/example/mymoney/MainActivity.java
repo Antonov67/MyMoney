@@ -3,8 +3,10 @@ package com.example.mymoney;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -65,5 +67,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("money777", ballans + "");
         textBallans.setText("" + ballans);
 
+    }
+
+    public void vvodExpence(View view) {
+        startActivity(new Intent(MainActivity.this, VvodExpenceActivity.class));
     }
 }

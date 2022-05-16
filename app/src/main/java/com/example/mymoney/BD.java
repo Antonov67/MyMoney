@@ -82,14 +82,14 @@ public class BD {
 
         List<String> list = new ArrayList<>();
 
-        String sql = "SELECT users.login, expence.summa, category_expence.name FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID;
+        String sql = "SELECT users.login, expence.summa, category_expence.name, expence.data FROM users INNER JOIN expence ON users.id = expence.id  INNER JOIN category_expence ON expence.id_cat = category_expence.id WHERE users.id = " + USER_ID;
         Log.d("money777", "траты");
         Cursor cursor = getDataFromBD(sql, context);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
             Log.d("money777", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
-            list.add(cursor.getString(1) + " руб. категория: " + cursor.getString(2));
+            list.add(cursor.getString(3) + ": " + cursor.getString(1) + " руб. категория: " + cursor.getString(2));
             cursor.moveToNext();
         }
         cursor.close();
@@ -124,6 +124,25 @@ public class BD {
         }
         cursor.close();
         return summa;
+    }
+
+    //все категори расходов
+    public static ArrayList<CategoryExpence> allCatExpence(Context context) {
+
+        List<CategoryExpence> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM category_expence";
+        Cursor cursor = getDataFromBD(sql, context);
+        cursor.moveToFirst();
+
+
+        while (!cursor.isAfterLast()) {
+            CategoryExpence categoryExpence = new CategoryExpence(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
+            list.add(categoryExpence);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return (ArrayList<CategoryExpence>) list;
     }
 
 }

@@ -15,17 +15,9 @@
         android:textStyle="bold"
         android:text="расходы" />
 
-    <EditText
-        android:id="@+id/expenceVvod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:text="0.0" />
 
-    <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
+        android:onClick="vvodExpence"
         android:id="@+id/button"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
