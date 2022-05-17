@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         minus = BD.totalExpence(this);
         plus = BD.totalIncome(this);
         ballans = plus -minus;
-
+        textBallans.setText("" + ballans);
 
 
 
@@ -65,8 +65,17 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("money777", plus + "");
 //        Log.d("money777", "балланс");
 //        Log.d("money777", ballans + "");
-        textBallans.setText("" + ballans);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        minus = BD.totalExpence(this);
+        plus = BD.totalIncome(this);
+        ballans = plus -minus;
+        textBallans.setText("" + ballans);
     }
 
     public void vvodExpence(View view) {
