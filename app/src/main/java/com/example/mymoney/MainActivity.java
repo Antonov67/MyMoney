@@ -59,17 +59,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Log.d("money777", "общие траты");
-        Log.d("money777", minus + "");
-        Log.d("money777", "общие доходы");
-        Log.d("money777", plus + "");
-        Log.d("money777", "балланс");
-        Log.d("money777", ballans + "");
+//        Log.d("money777", "общие траты");
+//        Log.d("money777", minus + "");
+//        Log.d("money777", "общие доходы");
+//        Log.d("money777", plus + "");
+//        Log.d("money777", "балланс");
+//        Log.d("money777", ballans + "");
         textBallans.setText("" + ballans);
 
     }
 
     public void vvodExpence(View view) {
         startActivity(new Intent(MainActivity.this, VvodExpenceActivity.class));
+    }
+
+    public void vvodIncome(View view) {
+        startActivity(new Intent(MainActivity.this, VvodIncomeActivity.class));
     }
 }

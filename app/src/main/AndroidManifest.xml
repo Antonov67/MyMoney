@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMoney">
         <activity
+            android:name=".VvodIncomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IncomeListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExpenceListActivity"
             android:exported="false" />
         <activity

@@ -193,7 +193,7 @@ public class BD {
 
         List<String> list = new ArrayList<>();
 
-        String sql = "SELECT users.login, income.summa, imcome.item, income.data FROM users INNER JOIN income ON users.id = income.id  INNER JOIN category_income ON income.id_cat = category_income.id WHERE users.id = " + USER_ID + " AND income.id_cat = " + id  + " ORDER BY income.data DESC";
+        String sql = "SELECT users.login, income.summa, income.item, income.data FROM users INNER JOIN income ON users.id = income.id  INNER JOIN category_income ON income.id_cat = category_income.id WHERE users.id = " + USER_ID + " AND income.id_cat = " + id  + " ORDER BY income.data DESC";
 
         Cursor cursor = getDataFromBD(sql, context);
         cursor.moveToFirst();
@@ -226,7 +226,7 @@ public class BD {
         return (ArrayList<IncomeByCategory>) list;
     }
 
-    //13.все категори доходов
+    //13.все категории доходов
     public static ArrayList<CategoryIncome> allCatIncome(Context context) {
 
         List<CategoryIncome> list = new ArrayList<>();
@@ -262,7 +262,7 @@ public class BD {
         newValues.put("data", income.getDate());
         newValues.put("item", income.getItem());
         newValues.put("id_cat", income.getId_cat());
-        bd.insert("expence", null, newValues);
+        bd.insert("income", null, newValues);
     }
 
 }
