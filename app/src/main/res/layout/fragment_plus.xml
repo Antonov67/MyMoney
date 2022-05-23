@@ -21,13 +21,14 @@
         android:onClick="vvodIncome"
         android:id="@+id/button2"
         android:layout_margin="10dp"
+        app:backgroundTint="@color/income_button"
         app:cornerRadius="15px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="добавить доход" />
 
     <ListView
-        android:background="@drawable/bg_list_layout"
+        android:background="@drawable/bg_list_income_layout"
         android:id="@+id/listIncome"
         android:padding="10dp"
         android:layout_margin="5px"

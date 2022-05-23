@@ -22,13 +22,14 @@
         android:onClick="vvodExpence"
         android:id="@+id/button"
         app:cornerRadius="15px"
+        app:backgroundTint="@color/expence_button"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="добавить расход" />
 
     <ListView
-        android:background="@drawable/bg_list_layout"
+        android:background="@drawable/bg_list_expence_layout"
         android:id="@+id/listExpence"
         android:padding="10dp"
         android:layout_margin="5px"
