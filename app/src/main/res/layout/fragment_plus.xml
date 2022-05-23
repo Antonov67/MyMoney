@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".PlusFragment">
 
@@ -16,16 +17,19 @@
         android:text="доходы" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:onClick="vvodIncome"
         android:id="@+id/button2"
         android:layout_margin="10dp"
+        app:cornerRadius="15px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="добавить доход" />
 
     <ListView
+        android:background="@drawable/bg_list_layout"
         android:id="@+id/listIncome"
+        android:padding="10dp"
         android:layout_margin="5px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

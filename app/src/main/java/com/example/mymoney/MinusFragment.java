@@ -59,8 +59,7 @@ public class MinusFragment extends Fragment {
             list.add(expenceByCategory.getName() + " " + expenceByCategory.getSumma());
         }
 
-        adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, list);
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

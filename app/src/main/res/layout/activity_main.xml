@@ -9,6 +9,7 @@
 
 
     <TextView
+
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,33 +20,46 @@
 
     <TextView
         android:id="@+id/textBallans"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:padding="15dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_ballans_layout"
         android:textSize="40dp"
         android:text="Ваш баланс" />
 
     <com.google.android.material.tabs.TabLayout
+
         android:id="@+id/tabLayout"
+       android:background="@drawable/bg_tap_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200">
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/design_default_color_primary"
+        app:tabTextColor="@color/design_default_color_secondary"
+        android:layout_margin="15px"
+       >
 
         <com.google.android.material.tabs.TabItem
+
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="15px"
             android:text="Доходы" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="15px"
             android:text="Расходы" />
 
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
+
         android:id="@+id/viewPager"
+        android:layout_margin="15px"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
