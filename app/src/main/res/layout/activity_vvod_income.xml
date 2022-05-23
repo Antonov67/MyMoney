@@ -21,6 +21,7 @@
         android:ems="10"
         android:gravity="center"
         android:textSize="35dp"
+        android:layout_margin="10dp"
         android:inputType="numberDecimal"
         android:text="0.0" />
     <EditText
@@ -28,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_margin="10dp"
         android:inputType="textPersonName"
         android:text="" />
 
@@ -36,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_margin="10dp"
         android:inputType="textPersonName"
         android:text="" />
 
@@ -43,7 +46,9 @@
         android:id="@+id/textPreviewVvodIncome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="будет добавлено" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/butVvodIncome"
         android:onClick="vvodIncomeTotal"
@@ -55,6 +60,7 @@
 
     <ListView
         android:id="@+id/listVvodIncome"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 

@@ -22,12 +22,14 @@
         android:ems="10"
         android:gravity="center"
         android:textSize="35dp"
+        android:layout_margin="10dp"
         android:inputType="numberDecimal"
         android:text="0.0" />
     <EditText
         android:id="@+id/itemExpenceField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="" />
@@ -38,13 +40,16 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:layout_margin="10dp"
         android:text="" />
 
     <TextView
         android:id="@+id/textPreviewVvod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="будет добавлено" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/butVvodExpence"
         android:onClick="vvodExpenceTotal"
@@ -56,6 +61,7 @@
 
     <ListView
         android:id="@+id/listVvodExpence"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
