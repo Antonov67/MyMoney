@@ -29,11 +29,16 @@
         android:text="добавить расход" />
 
     <ListView
-        android:background="@drawable/bg_list_expence_layout"
         android:id="@+id/listExpence"
-        android:padding="10dp"
-        android:layout_margin="5px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5px"
+        android:background="@drawable/bg_list_expence_layout"
+        android:padding="10dp"></ListView>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chartExpence"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
 
 </LinearLayout>
