@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="MyMoney"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
         android:layout_height="150dp"
 
         android:layout_marginBottom="44dp"
-        android:src="@drawable/ya"
+        android:src="@drawable/img"
         app:layout_constraintBottom_toTopOf="@+id/loginField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
